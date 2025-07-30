@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CARGO MANAGEMENT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>CARGO MANAGEMENT</h1>
+  <h2>Take as many as you wish</h2>
+  <ul class="cargo-list" id="cargoList">
+    <li>радость</li>
+    <li>оптимизм</li>
+    <li>хорошее настроение</li>
+    <li>удача</li>
+    <li>здоровье</li>
+    <li>любовь</li>
+    <li>дружба</li>
+    <li>успех</li>
+    <li>спокойствие</li>
+    <li>вдохновение</li>
+  </ul>
+ <div class="img-btn-wrapper">
+  <img id="centerImg" src="1.png" alt="corner" class="center-img">
+  <button id="newOrderBtn" style="display:none;">NEW ORDER AVAILABLE</button>
+</div>
+<script>
+  const cargoItems = document.querySelectorAll('.cargo-list li');
+  const newOrderBtn = document.getElementById('newOrderBtn');
+  let selectedCount = 0;
+
+  cargoItems.forEach(item => {
+    item.addEventListener('click', function() {
+      this.classList.toggle('selected');
+      selectedCount = document.querySelectorAll('.cargo-list li.selected').length;
+      newOrderBtn.style.display = selectedCount > 0 ? 'block' : 'none';
+    });
+  });
+
+  newOrderBtn.addEventListener('click', function() {
+    const img = document.getElementById('centerImg');
+    img.src = '2.png'; // путь ко второй картинке
+    setTimeout(() => {
+      window.location.href = 'new-order.html'; // переход на новую страницу
+    }, 2000);
+  });
+</script>

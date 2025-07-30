@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New order available</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container no-border" style="text-align:center; margin-top:3rem;">
+    <h1>New order received!</h1>
+    <p>Urgent. Fragile.</p>
+    <p>Subject: squirrel. Species: unknown. Status: missing.</p>
+    <p>The client was vague. All they said was:</p>
+    <p>“She escaped again. You know the way. Return her to Dema.”</p>
+    <p>No coordinates. No signal. No name.</p>
+    <p>Just a trace of fur and the feeling that it was close.</p>
+    <p>The route is yours to find.</p>
+    <p>Deliver the squirrel. Deliver hope.</p>
+    <button id="letsGoBtn">START MISSION</button>
+  </div>
+  <div id="timer" class="timer-box" style="display:none; margin:2rem auto 0 auto; text-align:center;"></div>
+  <script>
+    document.getElementById('letsGoBtn').onclick = function() {
+  let timeLeft = 15 * 60 * 1000; // миллисекунды
+  const timerDisplay = document.getElementById('timer');
+  this.style.display = 'none';
+  timerDisplay.style.display = 'block';
+
+  function updateTimer() {
+    const minutes = Math.floor(timeLeft / 60000);
+    const seconds = Math.floor((timeLeft % 60000) / 1000);
+    const ms = Math.floor((timeLeft % 1000) / 100); // сотые секунды
+    timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}:${ms}`;
+    timeLeft -= 100;
+    if (timeLeft < 0) {
+      clearInterval(timerInterval);
+      timerDisplay.textContent = "ᓚᘏᗢ";
+    }
+  }
+
+  updateTimer();
+  const timerInterval = setInterval(updateTimer, 100);
+};
+  </script>
+</body>
+</html>
